@@ -12,19 +12,17 @@ setup(
         ('share/ament_index/resource_index/packages',
             ['resource/' + package_name]),
         ('share/' + package_name, ['package.xml']),
-        (os.path.join('share', package_name, 'urdf'), glob('urdf/*.urdf')),
+        # These two lines copy your launch and urdf folders to the install space
+        (os.path.join('share', package_name, 'launch'), glob(os.path.join('launch', '*launch.[pxy][yma]*'))),
+        (os.path.join('share', package_name, 'urdf'), glob(os.path.join('urdf', '*.urdf'))),
     ],
     install_requires=['setuptools'],
     zip_safe=True,
-    maintainer='gmarani',
-    maintainer_email='giacomo.marani@mail.wvu.edu',
-    description='URDF package for the Scout Rover',
+    maintainer='ROBE-313',
+    maintainer_email='robotics@wvu.edu',
+    description='Scout Rover Description Package',
     license='Apache-2.0',
-    extras_require={
-        'test': [
-            'pytest',
-        ],
-    },
+    tests_require=['pytest'],
     entry_points={
         'console_scripts': [
         ],
